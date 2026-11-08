@@ -2,6 +2,9 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .models import Profile
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -9,7 +12,8 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            Profile.objects.create(user=user,channel_name=user.username)
             return redirect('login')
     else:
         form = UserCreationForm()
@@ -32,6 +36,11 @@ def login_user(request):
 
     return render(request, 'accounts/login.html')
 
+def profile(request, username):
+    user = get_object_or_404(User,username=username)
+    profile, created = Profile.objects.get_or_create(user=user,defaults={'channel_name': user.username})
+
+    return render(request,'profiles/profile.html',{'profile': profile})
 @login_required(login_url='login')
 def home(request):
     return render(request, 'home.html')
