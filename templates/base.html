@@ -1,44 +1,33 @@
 {% load static %}
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>{% block title %}VideoStream{% endblock %}</title>
-
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  </head>
-
-  <body>
-    <header class="navbar">
-      <a href="{% url 'home' %}" class="logo"> VideoStream </a>
-
-      <nav class="nav-links">
-        <a href="{% url 'home' %}">Home</a>
-
-        {% if user.is_authenticated %}
-
-        <a href="{% url 'upload_video' %}">Upload</a>
-
-        <a href="{% url 'profile' user.username %}"> My Channel </a>
-
-        <form method="POST" action="{% url 'logout' %}">
-          {% csrf_token %}
-          <button type="submit">Logout</button>
-        </form>
-
-        {% else %}
-
-        <a href="{% url 'login' %}">Login</a>
-
-        <a href="{% url 'register' %}">Register</a>
-
-        {% endif %}
-      </nav>
-    </header>
-
-    <main class="main-content">{% block content %} {% endblock %}</main>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Plotib{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    </head>
+    <body>
+        <header class="navbar">
+            <a href="{% url 'home' %}" class="logo">Plotib</a>
+            <nav class="nav-links">
+                
+                <a href="{% url 'home' %}">Home</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'upload_video' %}">Upload</a>
+                    <a href="{% url 'profile' user.username %}">My Channel</a>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </nav>
+        </header>
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </body>
 </html>

@@ -1,20 +1,16 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Upload Video</title>
-  </head>
-
-  <body>
-    <h1>Publish a Video</h1>
-
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %} {{ form.as_p }}
-
-      <button type="submit">Publish Video</button>
-    </form>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Upload Video</title>
+    </head>
+    <body>
+        <h1>Publish a Video</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit">Publish Video</button>
+        </form>
+    </body>
 </html>

@@ -1,38 +1,26 @@
-{% extends 'base.html' %} {% block title %} Home | VideoStream {% endblock %} {%
-block content %}
-
-<h1>Latest Videos</h1>
-
-<div class="video-container">
-  {% for video in videos %}
-
-  <div class="video-card">
-    <a href="{% url 'watch_video' video.id %}">
-      {% if video.thumbnail %}
-
-      <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" />
-
-      {% else %}
-
-      <div class="no-thumbnail">No thumbnail available</div>
-
-      {% endif %}
-    </a>
-
-    <h3>{{ video.title }}</h3>
-
-    <a href="{% url 'profile' video.uploaded_by.username %}">
-      {{ video.uploaded_by.username }}
-    </a>
-
-    <p>{{ video.views }} views</p>
-  </div>
-
-  {% empty %}
-
-  <p>No videos uploaded yet.</p>
-
-  {% endfor %}
-</div>
-
+{% extends "base.html" %}
+{% block title %}
+    Home | Plotib
+{% endblock %}
+{% block content %}
+<h1>Welcome, <a href="{% url 'profile' user.username %}">{{ user.username }}</a>!</h1><br><br>
+    <h1>Latest Videos</h1>
+    <div class="video-container">
+        {% for video in videos %}
+            <div class="video-card">
+                <a href="{% url 'watch_video' video.id %}">
+                    {% if video.thumbnail %}
+                        <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}">
+                    {% else %}
+                        <div class="no-thumbnail">No thumbnail available</div>
+                    {% endif %}
+                </a>
+                <h3>{{ video.title }}</h3>
+                <a href="{% url 'profile' video.uploaded_by.username %}">{{ video.uploaded_by.username }}</a>
+                <p>{{ video.views }} views</p>
+            </div>
+        {% empty %}
+            <p>No videos uploaded yet.</p>
+        {% endfor %}
+    </div>
 {% endblock %}

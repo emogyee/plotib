@@ -1,34 +1,23 @@
-{% load static %}
-
-{% extends 'base.html' %} {% block title %} {{ video.title }} | VideoStream {%
-endblock %} {% block content %}
-
-<div class="watch-container">
-  <div class="video-player">
-    <video controls>
-      <source src="{{ video.video_file.url }}" />
-      Your browser does not support video playback.
-    </video>
-  </div>
-
-  <div class="video-details">
-    <h1>{{ video.title }}</h1>
-
-    <p>{{ video.views }} views</p>
-
-    <p>
-      Creator:
-      <a href="{% url 'profile' video.uploaded_by.username %}">
-        {{ video.uploaded_by.username }}
-      </a>
-    </p>
-
-    <h3>Description</h3>
-
-    <p>{{ video.description }}</p>
-
-    <p>Category: {{ video.category }}</p>
-  </div>
-</div>
-
+{% extends "base.html" %}
+{% block title %}{{ video.title }} | Plotib{% endblock %}
+{% block content %}
+    <div class="watch-container">
+        <div class="video-player">
+            <video controls width="100%" height="auto">
+                <source src="{{ video.video_file.url }}" />
+                Your browser does not support video playback.
+            </video>
+        </div>
+        <div class="video-details">
+            <h1>{{ video.title }}</h1>
+            <p>{{ video.views }} views</p>
+            <p>
+                Creator:
+                <a href="{% url 'profile' video.uploaded_by.username %}">{{ video.uploaded_by.username }}</a>
+            </p>
+            <h3>Description</h3>
+            <p>{{ video.description }}</p>
+            <p>Category: {{ video.category }}</p>
+        </div>
+    </div>
 {% endblock %}
