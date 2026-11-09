@@ -49,17 +49,17 @@ body {
   cursor: pointer;
 }
 
-/* Main content */
+
 
 .main-content {
   padding: 30px 5%;
 }
 
-/* Video feed */
+
 
 .video-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: 3fr 3fr 3fr;
   gap: 25px;
   margin-top: 25px;
 }
@@ -88,7 +88,7 @@ body {
   background: #ddd;
 }
 
-/* Watch page */
+
 
 .watch-container {
   max-width: 1000px;
